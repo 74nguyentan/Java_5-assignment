@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<link rel="stylesheet" th:href="@{/style.css}"/>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" class="col-12">
+<form th:action="@{/departs/find}" method="get">
+<h1> List Departments</h1> 
+<a th:href="@{/departs/add}" class="btn btn-primary"style="position: absolute;right: 52px;top: 12px;">Add new Departments</a>
+
+	<div id="serch-depart" style="position: absolute; right: 250px;top: 12px;">
+		  <div class="form-inline">
+		    <div class="input-group">
+		    <input type="text" name="name" class="form-control" placeholder=" search" aria-label="Username" aria-describedby="basic-addon1" style="width: 280px">
+		      <div  class="input-group-prepend">
+		        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+<table class="table table-striped table-hover" style="text-align: center;">
+	<thead class="thead-dark">
+		<tr class="text-align-center">
+			<th scope="col" style="width: 150px">Departments ID</th>
+			<th scope="col" >Name</th>
+			<th scope="col" style="width: 250px">&nbsp;</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr th:each="item : ${departs}">
+			<th scope="row"  th:text="${item.id}" style="width: 150px"></th>
+			<td th:text="${item.name}"></td>
+			<td style="width: 250px">
+			<a th:href="@{'/departs/edit/' + ${item.id}}" class="btn btn-primary">Edit</a> |
+			<a th:href="@{'/departs/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	</tbody>	
+</table>
+</form>
+</div>
+</body>
+</html>

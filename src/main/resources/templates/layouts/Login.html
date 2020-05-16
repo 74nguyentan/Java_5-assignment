@@ -1,0 +1,294 @@
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Login Page</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/styleLogin.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card">
+          <div class="card-header">
+            <h3>Sign In</h3>
+            <div class="d-flex justify-content-end social_icon">
+              <span><i class="fab fa-facebook-square"></i></span>
+              <span><i class="fab fa-google-plus-square"></i></span>
+              <span><i class="fab fa-twitter-square"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <form th:action="@{/home}" th:object="${User}" method="post">
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-user"></i
+                  ></span>
+                </div>
+                <input
+                  th:field="*{username}"
+                  type="text"
+                  class="form-control"
+                  placeholder="username"
+                />
+              </div>
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-key"></i
+                  ></span>
+                </div>
+                <input
+                  th:field="*{password}"
+                  type="password"
+                  class="form-control"
+                  placeholder="password"
+                />
+              </div>
+              <div class="row align-items-center remember">
+                <input type="checkbox" />Remember Me
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  value="Login"
+                  class="btn float-right login_btn"
+                />
+              </div>
+              <div th:if="${message != null}">
+                <h5
+                  th:text="${message}"
+                  style="color: red;font-size: 17px;text-align: center;margin-bottom: -15px;"
+                ></h5>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+              Don't have an account?<a
+                href="#"
+                data-toggle="modal"
+                data-target="#editModel"
+                >Sign Up</a
+              >
+            </div>
+            <div class="d-flex justify-content-center">
+              <a href="#" data-toggle="modal" data-target="#quenMK"
+                >Forgot your password?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal mt-3" id="editModel" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content mt-5" style="width: 700px; right: 100px;">
+            <div class="modal-header bg-dark">
+              <h3 style="color: white;">Sign Up</h3>
+              <div class="d-flex justify-content-end social_icon">
+                <span><i class="fab fa-facebook-square"></i></span>
+                <span><i class="fab fa-google-plus-square"></i></span>
+                <span><i class="fab fa-twitter-square"></i></span>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action=""  method="post">
+                <div class="row">
+                  <div class="col sm-6">
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-user"></i
+                        ></span>
+                      </div>
+                      <input
+                       
+                        type="text"
+                        class="form-control"
+                        placeholder="Username"
+                      />
+                    </div>
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-key"></i
+                        ></span>
+                      </div>
+                      <input
+                       
+                        type="text"
+                        class="form-control"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-key"></i
+                        ></span>
+                      </div>
+                      <input
+                       
+                        type="password"
+                        class="form-control"
+                        placeholder="Password again"
+                      />
+                    </div>
+                  </div>
+                  <div class="col sm-6">
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-user"></i
+                        ></span>
+                      </div>
+                      <div class="form-control ">
+                        <label
+                          ><input type="checkbox" value="Nam" /> Nam
+                        </label>
+                      </div>
+                      <div class="form-control ">
+                        <label><input type="checkbox" value="Nu" /> Nu </label>
+                      </div>
+                    </div>
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-envelope"></i
+                        ></span>
+                      </div>
+                      <input
+                       
+                        type="text"
+                        class="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-phone"></i
+                        ></span>
+                      </div>
+                      <input
+                        
+                        type="text"
+                        class="form-control"
+                        placeholder="Numberphone"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col ">
+                    <div class="form-group">
+                      <input
+                        type="submit"
+                        value="Regist"
+                        class="btn float-right login_btn"
+                      />
+                    </div>
+                   <!--  <div th:if="${message != null}">
+                      <h5
+                        th:text="${message}"
+                        style="color: red;font-size: 17px;text-align: center;margin-bottom: -15px;"
+                      ></h5>
+                    </div>-->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal mt-3" id="quenMK" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content mt-5">
+            <div class="modal-header bg-dark">
+              <h3 style="color: white;">Sign Up</h3>
+              <div class="d-flex justify-content-end social_icon">
+                <span><i class="fab fa-facebook-square"></i></span>
+                <span><i class="fab fa-google-plus-square"></i></span>
+                <span><i class="fab fa-twitter-square"></i></span>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action=""  method="post">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="fas fa-user"></i
+                    ></span>
+                  </div>
+                  <input
+                   
+                    type="text"
+                    class="form-control"
+                    placeholder="Email or numberphone"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="submit"
+                    value="Submit"
+                    class="btn float-right login_btn"
+                  />
+                </div>
+                <!-- <div th:if="${message != null}">
+                  <h5
+                    th:text="${message}"
+                    style="color: red;font-size: 17px;text-align: center;margin-bottom: -15px;"
+                  ></h5>
+                </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

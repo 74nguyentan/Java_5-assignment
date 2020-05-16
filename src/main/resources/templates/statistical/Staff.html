@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/style.css}"/>
+</head>
+<body>
+	<div layout:fragment="content" class="col-12">
+	<form th:action="@{/staffs/find}" method="get">
+		<h1 >Statistical Staffs</h1>
+		
+		<div id="serch-depart" style="position: absolute;right: 250px;top: 12px;">
+		  <div class="form-inline">
+		    <div class="input-group">
+		    <input type="text" name="name" class="form-control" placeholder=" search" aria-label="Username" aria-describedby="basic-addon1" style="width: 280px">
+		      <div  class="input-group-prepend">
+		        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	<table class="table table-striped" style="text-align: center;">
+		<thead class="thead-dark">
+			<tr >
+				<th scope="col" >Id</th>
+				<th scope="col">Staff name </th>
+				<th scope="col">achievements</th>
+				<th scope="col">discipline</th>
+				<th scope="col">point</th>
+			
+			</tr>
+			</thead>
+			
+			<tbody>
+			<tr th:each="staff : ${staffs}">
+				<th scope="row" th:text="${staff.id}" ></th>
+				<td th:text="${staff.name}"></td>
+				<td th:text="${staff.gioiTinh}"></td>
+				<td th:text="${staff.birthday}"></td>
+				<td th:text="${staff.phone}"></td>
+			
+			</tr>
+			</tbody>
+	</table>
+	</form>
+</div>
+</body>
+</html>

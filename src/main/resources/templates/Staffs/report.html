@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content" class="col-12" style="height: 432px;">
+		<h2>Tổng hợp thành tích nhân viên !</h2>
+		<a th:href="@{/staffs/list}" style="position: absolute;right: 20px;top: 10px;padding: 7px 20px;"><i class="fas fa-angle-double-left"></i> back</a>
+		<table class="table table-hover">
+			<tr>
+				<th>Mã NV</th>
+				<th>Tên</th>
+				<th>Tổng thành tích</th>
+				<th>Tổng kỷ luật</th>
+				<th>Điểm thưởng</th>
+			</tr>
+			<tr>
+				<td th:text="${staff.id}"></td>
+				<td th:text="${staff.name}"></td>
+				<td th:text="${achieve}"></td>
+				<td th:text="${disceple}"></td>
+				<td th:text="${sum}"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

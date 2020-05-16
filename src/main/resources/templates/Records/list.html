@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content" class="col-12">
+		<form th:action="@{/records/find}" method="get">
+			<h1>List records</h1>
+			<a th:href="@{/records/add}" class="btn btn-primary"
+				style="position: absolute; right: 16px; top: 10px; padding: 7px 20px;">Add
+				Records</a>
+
+			<div id="serch-depart"
+				style="position: absolute; right: 250px; top: 12px;">
+				<div class="form-inline">
+					<div class="input-group">
+						<input type="text" name="staff" class="form-control"
+							placeholder=" search" aria-label="Username"
+							aria-describedby="basic-addon1" style="width: 280px">
+						<div class="input-group-prepend">
+							<button class="btn btn-outline-success my-2 my-sm-0"
+								type="submit">Search</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-striped" style="text-align: center;">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col" style="width: 98px;">Record Id</th>
+						<th scope="col" style="width: 200px">Staff</th>
+						<th scope="col" style="width: 50px;">Type</th>
+						<th scope="col">Reason</th>
+						<th scope="col">Date</th>
+						<th scope="col" style="width: 265px;">&nbsp;</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="record : ${records}">
+						<th scope="row" th:text="${record.id}"></th>
+						<td th:text="${record.staff.name}" data-toggle="modal" data-target="#view" ></td>
+						<td th:text="${record.type}"></td>
+						<td th:text="${record.reason}"></td>
+						<td th:text="${record.date}"></td>
+						<td>
+							
+							<a th:href="@{'/records/edit/' + ${record.id}}" class="btn btn-primary">Edit</a> | 
+							<a	th:href="@{'/records/delete/' + ${record.id}}" class="btn btn-danger">Delete</a>
+							<!-- <a th:href="@{'/records/report/' + ${record.staff.id}" class="btn btn-danger">view</a> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div style="top: 70px;" class="modal" id="view" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-striped" style="text-align: center;">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col" style="width: 200px">Staff</th>
+									<th scope="col">Type</th>
+									<th scope="col">Reason</th>
+									<th scope="col">Date</th>
+								</tr>
+							</thead>
+			
+							<tbody>
+								<tr th:each="view : ${view}">
+									<td th:text="${view.staff.name}"></td>
+									<td th:text="${view.type}"></td>
+									<td th:text="${view.reason}"></td>
+									<td th:text="${view.date}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

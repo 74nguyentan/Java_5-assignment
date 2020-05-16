@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div  layout:fragment="content"  class="col-12">
+<div class="card " style="width: 500px;margin-left: 300px">
+<h1 class="ml-3">Send Mail</h1>
+
+<div class="card-body">
+<form action="/sendgmail" method="get">
+	
+	<div class="form-group">
+	<label >From :</label>
+	<input class="form-control" name="from" placeholder="from">
+	</div>
+	<div class="form-group">
+	<label >To :</label>
+	<input class="form-control" name="to" placeholder="a@gmail.com , b@gmail.com" >
+	</div>
+	<div class="form-group">
+	<label >Subject :</label>
+	<input class="form-control" name="subject" placeholder="subject">
+	</div>
+	<div class="form-group">
+	<label >Content :</label>
+	<textarea class="form-control" name="body" placeholder="content..." rows="3" cols="30"></textarea>
+	</div>
+
+	  <div class="form-group">
+	  <input type="submit" value="Send"  class="btn  btn-primary float-right"/>
+       </div>
+              <div th:if="${message != null}">
+                <h5
+                  th:text="${message}"
+                  style="color: red;font-size: 17px;text-align: center;margin-bottom: -15px;"
+                ></h5>
+              </div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

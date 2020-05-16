@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+	<div>
+	<h1>Add Staff</h1>
+	</div>
+	<div th:if="${message != null}">
+		<h2 th:text="${message}"></h2>
+	</div>
+
+<form th:action="@{/staffs/saveOrUpdate}" method="post" th:object="${staffDto}" enctype="multipart/form-data"> 
+
+<div  class="row">
+
+ <div  class="col">
+	<div class="form-group" >
+	 <label style="margin-right: 10px; ">Department:</label>
+		<select th:field="*{departId}"  style="width: 196px;">
+			<option th:each="depart : ${departs}" th:value="${depart.id}" th:text="${depart.name}"></option>
+		</select> 
+		<!--  <span th:if="${#fields.hasErrors('departId')}" th:errors="*{departId}">
+			Empty firsname 
+		</span> -->
+	</div>
+	
+	<div class="form-group" th:if="${id>0}">
+	<label for="id" style="margin-bottom: -10px;">Staff ID: </label> <br>
+		<input type="text" th:field="*{id}" placeholder=" Staff Id" >
+	</div>
+	
+	<div class="form-group">
+		<label for="name">Name: </label> 
+		<input type="text" th:field="*{name}" placeholder="Name"  style="width: 320px;"/>
+		<!--<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+			Empty firsname 
+		</span> -->
+	</div>
+	
+	<div class="form-group">
+		<label for="birthday">BirthDay: </label> 
+		<input type="text" th:field="*{birthday}" placeholder="birth Day"  style="width: 320px;"/>
+		<!--<span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">
+			Empty firsname 
+		</span> -->
+	</div>
+	
+	<div class="form-group" th:if="${id>0}">
+		<img  th:src="@{'/getimage/' + ${id}}" width="70" class="img-fluid" />
+	</div>	
+	
+	<div class="form-group">
+	
+		<label for="image">Image:</label> <br>
+		<input type="file" th:field="*{image}" placeholder="Photo" style="width: 320px;"/>
+		<!-- <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}">
+			Empty firsname 
+		</span> -->
+	</div>
+	</div>
+	
+	<div  class="col">
+	<div class="form-group" >
+	<label style="margin-right: 10px; ">Gioi tinh:</label>
+		<select th:field="*{gioiTinh}"  style="width: 196px;">
+			<option th:each="gioitinh : ${gioiTinh}" th:value="${gioitinh}" th:text="${gioitinh}"></option>
+		</select> 
+
+	</div>
+	
+
+	
+	<div class="form-group">
+		Number Phone :<br>
+		<input type="text" th:field="*{phone}" placeholder="Number phone"  style="width: 320px;"/>
+
+	</div>
+	
+	<div class="form-group">
+		<label for="email">Email: </label> <br>
+		<input type="text" th:field="*{email}" placeholder="Email"  style="width: 320px;"/>
+	</div>
+	
+	<div class="form-group">
+		<label for="salary">Salary: </label> <br>
+		<input type="text" th:field="*{salary}" placeholder="salary"  style="width: 320px;"/>
+	</div>
+	</div>
+	
+	<div  class="col">
+		<div class="form-group">
+		<label  style="margin-right: 10px; ">Cap do: </label>
+		<select th:field="*{capdo}"  style="width: 196px;">
+			<option th:each="capdo : ${capdo}" th:value="${capdo}" th:text="${capdo}"></option>
+		</select> 	</div>
+	
+	<div class="form-group">
+		<label for="note">Ghi chu: </label> <br>
+		<textarea  rows="7" cols="50" th:field="*{note}" placeholder="Note"  ></textarea>
+	</div>
+	</div>
+	</div>
+	
+	<div class="form-group">
+		<input type="submit" value="Add" th:if="${id<=0}" class="btn btn-primary"/>
+		<input type="submit" value="Upload" th:if="${id>0}" class="btn btn-primary"/> | 
+		
+	
+		<a th:href="@{/staffs/add}" class="btn btn-primary">New</a> |
+		<a th:href="@{/staffs/list}" class="btn btn-secondary">List</a>
+	</div>	
+	
+	
+</form> 
+<br><hr>
+
+<!-- <h4>Errors :</h4> -->
+	<ul th:if="${#fields.hasErrors('${staffDto.*}')}">
+		<li th:each="err : ${#fields.errors('${staffDto.*}')}" th:text="${err}"> Input is incorrect</li>
+	</ul>
+</div>
+</body>
+</html>

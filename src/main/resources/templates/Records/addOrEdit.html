@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div>
+			<h1>Add Records</h1>
+		</div>
+		<div th:if="${message != null}">
+			<h2 th:text="${message}"></h2>
+		</div>
+
+		<form th:action="@{/records/saveOrUpdate}" th:object="${recordDto}"
+			method="post" enctype="multipart/form-data">
+			<div class="row" >
+				<div class="col" style="left: 120px;">
+
+					<div class="form-group">
+						<label for="staff">Staff :</label> <br> <select
+							th:field="*{staff}" style="width: 320px;">
+							<option th:each="staff : ${staffs}" th:value="${staff.id}"
+								th:text="${staff.name}"></option>
+						</select>
+					</div>
+
+					<div class="form-group" th:if="${id > 0}">
+						<label for="id">Id record : </label> <br> <input type="text"
+							th:field="*{id}" placeholder="Id records" style="width: 320px;" />
+					</div>
+
+					<div class="form-group">
+						<label for="type"> Type :</label> <br> <select
+							th:field="*{type}" style="width: 150px;">
+							<option th:value="0">Kỉ Luật</option>
+							<option th:value="1">Thành tích</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="date">Date :</label> <br> <input type="text"
+							th:field="*{date}" placeholder="date" style="width: 320px;">
+					</div>
+				</div>
+
+				<div class="col" style="margin-left: 80px;">
+					<div class="form-group">
+						<label for="reason"> Reason :</label> <br>
+						<textarea rows="7" cols="50" th:field="*{reason}"
+							placeholder="Reason"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group" style="margin-left: 120px;">
+				<input value="Add" type="submit" th:if="${id <=0 }"
+					class="btn btn-primary"> <input value="Upload"
+					type="submit" th:if="${id>0 }" class="btn btn-primary"> | 
+					<a th:href="@{/records/add}" class="btn btn-primary">New</a> | 
+					<a th:href="@{/records/list}" class="btn btn-secondary">List</a>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+</html>

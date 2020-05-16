@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" class="col-12">
+<h1>Tong hop thanh tich cua nhan vien !</h1>
+<table class="table table-hover">
+<tr>
+<th>Mã NV</th>
+<th>Tên</th>
+<th>Thành tích</th>
+<th>Kỉ luật</th>
+<th>Tổng kết</th>
+</tr>
+<tr >
+<td th:text="${staff.id}"></td>
+<td th:text="${staff.name}"></td>
+<td th:text="${achieve}"></td>
+<td th:text="${disceple}"></td>
+<td th:text="${sum}"></td>
+</tr>
+</table>
+</div>
+
+</body>
+</html>

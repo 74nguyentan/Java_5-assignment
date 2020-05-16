@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/admin.html}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+	<div layout:fragment="content" class="col-12" style="height: 432px;">
+
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-home-tab"
+					data-toggle="tab" href="#nav-home" role="tab"
+					aria-controls="nav-home" aria-selected="true"> <i
+					class="fas fa-user"></i> Staff
+				</a> <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+					href="#nav-profile" role="tab" aria-controls="nav-profile"
+					aria-selected="false"> <i class="fas fa-list"></i> Depart
+				</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+				aria-labelledby="nav-home-tab">
+
+				<div class="card mt-3">
+				<form th:action="@{/staffs/find}" method="get">
+					<h1>Statistical Staffs</h1>
+
+					<div id="serch-depart"
+						style="position: absolute; right: 250px; top: 12px;">
+						<div class="form-inline">
+							<div class="input-group">
+								<input type="text" name="name" class="form-control"
+									placeholder=" search" aria-label="Username"
+									aria-describedby="basic-addon1" style="width: 280px">
+								<div class="input-group-prepend">
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<table class="table table-striped" style="text-align: center;">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Staff name</th>
+								<th scope="col">achievements</th>
+								<th scope="col">discipline</th>
+								<th scope="col">point</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="staff : ${staffs}">
+								<th scope="row" th:text="${staff.id}"></th>
+								<td th:text="${staff.name}"></td>
+								<td th:text="${staff.gioiTinh}"></td>
+								<td th:text="${staff.birthday}"></td>
+								<td th:text="${staff.phone}"></td>
+
+							</tr>
+							<tr>
+							<td>1</td>
+							<td>Nguyễn Văn Tân</td>
+							<td>Nam</td>
+							<td>17/08/1997</td>
+							<td>0325772929</td>
+							</tr>
+							<tr>
+							<td>3</td>
+							<td>Nguyễn Hoàng Nam</td>
+							<td>Nam</td>
+							<td>21/02/2000</td>
+							<td>0462589789</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+				aria-labelledby="nav-profile-tab">
+				<div class="card mt-3">
+					<form th:action="@{/staffs/find}" method="get">
+						<h1>Statistical Depart</h1>
+
+						<div id="serch-depart"
+							style="position: absolute; right: 250px; top: 12px;">
+							<div class="form-inline">
+								<div class="input-group">
+									<input type="text" name="name" class="form-control"
+										placeholder=" search" aria-label="Username"
+										aria-describedby="basic-addon1" style="width: 280px">
+									<div class="input-group-prepend">
+										<button class="btn btn-outline-success my-2 my-sm-0"
+											type="submit">Search</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<table class="table table-striped" style="text-align: center;">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Id</th>
+									<th scope="col">Depart name</th>
+									<th scope="col">achievements</th>
+									<th scope="col">discipline</th>
+									<th scope="col">point</th>
+
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="staff : ${staffs}">
+									<th scope="row" th:text="${staff.id}"></th>
+									<td th:text="${staff.name}"></td>
+									<td th:text="${staff.gioiTinh}"></td>
+									<td th:text="${staff.birthday}"></td>
+									<td th:text="${staff.phone}"></td>
+
+								</tr>
+								<tr>
+								<td>1</td>
+								<td>Kế Toán</td>
+								<td>8</td>
+								<td>3</td>
+								<td>5</td>
+								</tr>
+									<tr>
+								<td>6</td>
+								<td>Kinh Doanh</td>
+								<td>5</td>
+								<td>4</td>
+								<td>1</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
